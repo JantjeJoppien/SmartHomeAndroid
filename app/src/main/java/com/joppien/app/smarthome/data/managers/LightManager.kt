@@ -9,7 +9,7 @@ import com.joppien.app.smarthome.data.database.device.DeviceDao
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class LightManager(context: Context, serviceIpAddress: String?) {
+class LightManager(context: Context) {
 
     val deviceDao: DeviceDao by lazy {
         AppDatabase.getDatabase(context = context).deviceDao()

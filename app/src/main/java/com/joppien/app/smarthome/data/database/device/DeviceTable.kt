@@ -15,5 +15,7 @@ data class DeviceEntity(
     @ColumnInfo(name = "room_name")
     var roomName: String?,
     @ColumnInfo(name = "device_type")
-    var deviceType: Int
+    var deviceType: Int,
+    @ColumnInfo(name = "is_starred")
+    var isStarred: Boolean
 )
