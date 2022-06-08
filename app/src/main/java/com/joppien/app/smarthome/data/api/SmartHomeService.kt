@@ -11,21 +11,21 @@ import retrofit2.http.Path
 interface SmartHomeService {
 
     @PUT("/home")
-    fun setConfiguredDeviceTypes(homeRequest: HomeRequest)
+    suspend fun setConfiguredDeviceTypes(homeRequest: HomeRequest)
 
     @GET("/light/configure")
-    fun getConfigurableLightsList(): List<DeviceMetadataResponse>
+    suspend fun getConfigurableLightsList(): List<DeviceMetadataResponse>
 
     @GET("/light/configure")
-    fun setConfiguredLights(configuredDevices: List<DeviceMetadataResponse>)
+    suspend fun setConfiguredLights(configuredDevices: List<DeviceMetadataResponse>)
 
     @GET("/light")
-    fun getConfiguredLightList(): List<LightResponse>
+    suspend fun getConfiguredLightList(): List<LightResponse>
 
     @GET("/light/{id}")
-    fun getLight(@Path("id") id: String): LightResponse
+    suspend fun getLight(@Path("id") id: String): LightResponse
 
     @PUT("/light/{id}")
-    fun setLight(@Path("id") id: String, @Body lightRequest: LightResponse)
+    suspend fun setLight(@Path("id") id: String, @Body lightRequest: LightResponse)
 
 }
