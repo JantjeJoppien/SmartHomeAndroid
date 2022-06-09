@@ -4,10 +4,11 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.joppien.app.smarthome.R
 import com.joppien.app.smarthome.databinding.FragmentHomeBinding
+import com.joppien.app.smarthome.ui.models.DeviceModel
+import com.joppien.app.smarthome.ui.settings.SettingsFragment
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -16,6 +17,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private lateinit var binding: FragmentHomeBinding
+    private val adapter: DeviceAdapter by lazy {
+        DeviceAdapter(
+            { onItemClick(it) },
+            { onSwitchLightState(it) }
+        )
+    }
 
     private val homeViewModel: HomeViewModel by lazy { HomeViewModel(requireContext()) }
 
@@ -28,10 +35,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel.onViewCreated()
 
-        binding.search.setOnSearchClickListener {
-            homeViewModel.onSearch()
-        }
-
+        binding.homeRecyclerView.adapter = adapter
         binding.homeRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,
@@ -52,9 +56,35 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         })
 
-        homeViewModel.deviceItems.observe(viewLifecycleOwner) {
+        setActions()
+        setObservers()
+    }
+
+    private fun setActions() {
+        binding.search.setOnSearchClickListener {
+            homeViewModel.onSearch()
+        }
+        binding.starButton.setOnClickListener {
 
         }
+        binding.settingsButton.setOnClickListener {
+            requireActivity().supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.container, SettingsFragment())
+                .commit()
+        }
+    }
+
+    private fun setObservers() {
+        homeViewModel.deviceItems.observe(viewLifecycleOwner) { adapter.submitList(it) }
+    }
+
+    private fun onItemClick(device: DeviceModel) {
+
+    }
+
+    private fun onSwitchLightState(state: Boolean) {
+
     }
 
 }
