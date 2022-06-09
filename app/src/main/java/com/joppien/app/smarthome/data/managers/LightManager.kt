@@ -4,7 +4,6 @@ import android.content.Context
 import com.google.gson.GsonBuilder
 import com.joppien.app.smarthome.data.api.SmartHomeService
 import com.joppien.app.smarthome.data.api.models.LightRequest
-import com.joppien.app.smarthome.data.api.models.LightResponse
 import com.joppien.app.smarthome.data.database.AppDatabase
 import com.joppien.app.smarthome.data.database.HomeRepository
 import com.joppien.app.smarthome.data.database.device.DeviceDao
@@ -20,19 +19,21 @@ class LightManager(context: Context) {
 
     val homeRepository: HomeRepository by lazy { HomeRepository(context) }
 
-    val webservice by lazy {
-        Retrofit.Builder()
-            .baseUrl("https://${homeRepository.getHomeId()}/v1")
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            .build().create(SmartHomeService::class.java)
+    val webservice: SmartHomeService? by lazy {
+        if (homeRepository.getHomeIp() != null)
+            Retrofit.Builder()
+                .baseUrl("https://${homeRepository.getHomeIp()}/v1")
+                .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+                .build().create(SmartHomeService::class.java)
+        else null
     }
 
-    suspend fun getLightList(): List<LightModel> = webservice.getConfiguredLightList().map {
-        LightModel(it, deviceDao.getStarred(it.id))
-    }
+    suspend fun getLightList(): List<LightModel> =
+        webservice?.getConfiguredLightList()?.map { LightModel(it, deviceDao.getStarred(it.id)) }
+            ?: emptyList()
 
     suspend fun updateLightData(lightModel: LightModel) {
-        webservice.setLight(lightModel.id, LightRequest(lightModel))
+        webservice?.setLight(lightModel.id, LightRequest(lightModel))
     }
 
 }

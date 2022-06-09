@@ -3,4 +3,5 @@
     <string name="settings_title">Einstellungen</string>
     <string name="settings_save">Speichern</string>
     <string name="settings_info">Bitte geben Sie die IP-Adresse ihres Backend Services ein</string>
+    <string name="settings_hue">Philips Hue aktiviert</string>
 </resources>

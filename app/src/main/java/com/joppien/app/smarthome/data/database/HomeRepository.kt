@@ -16,13 +16,13 @@ class HomeRepository(context: Context) {
         )
     }
 
-    fun configureHomeId(id: String) {
+    fun configureHomeIp(id: String) {
         with(sharedPref.edit()) {
             putString(PREFERENCE_NAME, id)
             apply()
         }
     }
 
-    fun getHomeId() = sharedPref.getString(PREFERENCE_NAME, null)
+    fun getHomeIp() = sharedPref.getString(PREFERENCE_NAME, null)
 
 }

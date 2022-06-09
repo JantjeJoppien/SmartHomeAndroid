@@ -1,4 +1,4 @@
-package com.joppien.app.smarthome.ui.home
+package com.joppien.app.smarthome.ui.device
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -9,7 +9,7 @@ import com.joppien.app.smarthome.data.managers.LightManager
 import com.joppien.app.smarthome.ui.models.LightModel
 import kotlinx.coroutines.launch
 
-class HomeViewModel(context: Context) : ViewModel() {
+class DeviceViewModel(context: Context) : ViewModel() {
 
     private val lightManager: LightManager by lazy { LightManager(context = context) }
 

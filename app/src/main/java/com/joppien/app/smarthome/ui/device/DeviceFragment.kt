@@ -1,4 +1,4 @@
-package com.joppien.app.smarthome.ui.home
+package com.joppien.app.smarthome.ui.device
 
 import android.graphics.Rect
 import android.os.Bundle
@@ -8,11 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.joppien.app.smarthome.R
 import com.joppien.app.smarthome.databinding.FragmentHomeBinding
+import com.joppien.app.smarthome.ui.home.DeviceAdapter
+import com.joppien.app.smarthome.ui.home.HomeViewModel
 import com.joppien.app.smarthome.ui.models.DeviceModel
 import com.joppien.app.smarthome.ui.models.LightModel
 import com.joppien.app.smarthome.ui.settings.SettingsFragment
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class DeviceFragment : Fragment(R.layout.fragment_home) {
 
     companion object {
         private const val ITEM_SPACE = 4
