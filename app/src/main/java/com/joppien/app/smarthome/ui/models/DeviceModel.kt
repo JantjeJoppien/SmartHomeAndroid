@@ -6,5 +6,6 @@ data class DeviceModel(
     var customName: String?,
     var roomName: String?,
     var deviceType: Int,
-    var isStarred: Boolean
+    var isStarred: Boolean,
+    var lightState: Boolean
 )

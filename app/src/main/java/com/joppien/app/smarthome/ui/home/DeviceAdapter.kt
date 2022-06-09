@@ -11,7 +11,7 @@ import com.joppien.app.smarthome.ui.models.DeviceModel
 
 class DeviceAdapter(
     private val onClick: (DeviceModel) -> Unit,
-    private val onSwitchLightState: (Boolean) -> Unit
+    private val onSwitchLightState: (DeviceModel) -> Unit
 ) :
     ListAdapter<DeviceModel, DeviceViewHolder>(DeviceDiffCallback) {
 
@@ -27,8 +27,10 @@ class DeviceAdapter(
 
         binding.title.text = device.customName ?: device.internalName ?: "Unknown"
         binding.subtitle.text = device.roomName
+        binding.lightState.isChecked = device.lightState
+
         binding.lightState.setOnCheckedChangeListener { _, isChecked ->
-            onSwitchLightState(isChecked)
+            onSwitchLightState(device.apply { lightState = isChecked })
         }
     }
 

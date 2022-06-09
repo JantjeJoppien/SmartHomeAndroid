@@ -65,7 +65,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             homeViewModel.onSearch()
         }
         binding.starButton.setOnClickListener {
-
+            homeViewModel.onStarFilterClick()
         }
         binding.settingsButton.setOnClickListener {
             requireActivity().supportFragmentManager
@@ -83,8 +83,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     }
 
-    private fun onSwitchLightState(state: Boolean) {
-
+    private fun onSwitchLightState(device: DeviceModel) {
+        homeViewModel.onSwitchLightState(device)
     }
 
 }

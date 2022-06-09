@@ -21,4 +21,11 @@ class HomeViewModel(context: Context) {
 
     }
 
+    fun onStarFilterClick() {
+
+    }
+
+    fun onSwitchLightState(device: DeviceModel) {
+
+    }
 }
