@@ -3,14 +3,18 @@
     <color name="dark_primary">#FFB85D</color>
     <color name="dark_on_primary">#482A00</color>
     <color name="dark_primary_container">#663D00</color>
+    <color name="dark_on_primary_container">#FFDDB6</color>
     <color name="dark_secondary">#DFC1A2</color>
     <color name="dark_on_secondary">#3F2D17</color>
     <color name="dark_secondary_container">#58432B</color>
+    <color name="dark_on_secondary_container">#FCDDBD</color>
 
     <color name="light_primary">#875300</color>
     <color name="light_on_primary">#FFFFFF</color>
     <color name="light_primary_container">#FFDDB6</color>
+    <color name="light_on_primary_container">#2B1700</color>
     <color name="light_secondary">#715A41</color>
     <color name="light_on_secondary">#FFFFFF</color>
     <color name="light_secondary_container">#FCDDBD</color>
+    <color name="light_on_secondary_container">#281805</color>
 </resources>
