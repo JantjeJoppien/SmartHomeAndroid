@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joppien.app.smarthome.databinding.FragmentHomeDeviceBinding
 import com.joppien.app.smarthome.ui.models.DeviceModel
 
-class DeviceAdapter(private val onClick: (DeviceModel) -> Unit, private val omSwitchLightState: (Boolean) -> Unit) :
+class DeviceAdapter(
+    private val onClick: (DeviceModel) -> Unit,
+    private val onSwitchLightState: (Boolean) -> Unit
+) :
     ListAdapter<DeviceModel, DeviceViewHolder>(DeviceDiffCallback) {
 
     private lateinit var binding: FragmentHomeDeviceBinding
@@ -24,11 +27,15 @@ class DeviceAdapter(private val onClick: (DeviceModel) -> Unit, private val omSw
 
         binding.title.text = device.customName ?: device.internalName ?: "Unknown"
         binding.subtitle.text = device.roomName
+        binding.lightState.setOnCheckedChangeListener { _, isChecked ->
+            onSwitchLightState(isChecked)
+        }
     }
 
 }
 
-class DeviceViewHolder(itemView: View, val onClick: (DeviceModel) -> Unit) : RecyclerView.ViewHolder(itemView) {
+class DeviceViewHolder(itemView: View, val onClick: (DeviceModel) -> Unit) :
+    RecyclerView.ViewHolder(itemView) {
     private val currentDevice: DeviceModel? = null
 
     init {

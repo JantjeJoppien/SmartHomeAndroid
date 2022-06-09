@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">SmartHome</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_save">Speichern</string>
+    <string name="settings_info">Bitte geben Sie die IP-Adresse ihres Backend Services ein</string>
 </resources>
