@@ -1,12 +1,17 @@
 package com.joppien.app.smarthome.data.api.models
 
 import com.google.gson.annotations.SerializedName
+import com.joppien.app.smarthome.ui.models.LightModel
 
 data class LightResponse(
     @SerializedName("id")
     val id: String,
-    @SerializedName("name")
-    var name: String?,
+    @SerializedName("internalName")
+    var internalName: String?,
+    @SerializedName("customName")
+    var customName: String?,
+    @SerializedName("roomName")
+    var roomName: String?,
     @SerializedName("state")
     var lightState: Boolean,
     @SerializedName("brightness")

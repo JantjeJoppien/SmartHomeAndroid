@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joppien.app.smarthome.R
 import com.joppien.app.smarthome.databinding.FragmentHomeBinding
 import com.joppien.app.smarthome.ui.models.DeviceModel
+import com.joppien.app.smarthome.ui.models.LightModel
 import com.joppien.app.smarthome.ui.settings.SettingsFragment
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -62,7 +63,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun setActions() {
         binding.search.setOnSearchClickListener {
-            homeViewModel.onSearch()
+            homeViewModel.onSearch(binding.search.query)
         }
         binding.starButton.setOnClickListener {
             homeViewModel.onStarFilterClick()
@@ -83,7 +84,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     }
 
-    private fun onSwitchLightState(device: DeviceModel) {
+    private fun onSwitchLightState(device: LightModel) {
         homeViewModel.onSwitchLightState(device)
     }
 

@@ -2,6 +2,7 @@ package com.joppien.app.smarthome.data.api
 
 import com.joppien.app.smarthome.data.api.models.DeviceMetadataResponse
 import com.joppien.app.smarthome.data.api.models.HomeRequest
+import com.joppien.app.smarthome.data.api.models.LightRequest
 import com.joppien.app.smarthome.data.api.models.LightResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -26,6 +27,6 @@ interface SmartHomeService {
     suspend fun getLight(@Path("id") id: String): LightResponse
 
     @PUT("/light/{id}")
-    suspend fun setLight(@Path("id") id: String, @Body lightRequest: LightResponse)
+    suspend fun setLight(@Path("id") id: String, @Body lightRequest: LightRequest)
 
 }

@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.joppien.app.smarthome.databinding.FragmentHomeDeviceBinding
 import com.joppien.app.smarthome.ui.models.DeviceModel
+import com.joppien.app.smarthome.ui.models.LightModel
 
 class DeviceAdapter(
-    private val onClick: (DeviceModel) -> Unit,
-    private val onSwitchLightState: (DeviceModel) -> Unit
+    private val onClick: (LightModel) -> Unit,
+    private val onSwitchLightState: (LightModel) -> Unit
 ) :
-    ListAdapter<DeviceModel, DeviceViewHolder>(DeviceDiffCallback) {
+    ListAdapter<LightModel, DeviceViewHolder>(DeviceDiffCallback) {
 
     private lateinit var binding: FragmentHomeDeviceBinding
 
@@ -36,9 +37,9 @@ class DeviceAdapter(
 
 }
 
-class DeviceViewHolder(itemView: View, val onClick: (DeviceModel) -> Unit) :
+class DeviceViewHolder(itemView: View, val onClick: (LightModel) -> Unit) :
     RecyclerView.ViewHolder(itemView) {
-    private val currentDevice: DeviceModel? = null
+    private val currentDevice: LightModel? = null
 
     init {
         itemView.setOnClickListener {
@@ -48,12 +49,12 @@ class DeviceViewHolder(itemView: View, val onClick: (DeviceModel) -> Unit) :
 
 }
 
-object DeviceDiffCallback : DiffUtil.ItemCallback<DeviceModel>() {
-    override fun areItemsTheSame(oldItem: DeviceModel, newItem: DeviceModel): Boolean {
+object DeviceDiffCallback : DiffUtil.ItemCallback<LightModel>() {
+    override fun areItemsTheSame(oldItem: LightModel, newItem: LightModel): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: DeviceModel, newItem: DeviceModel): Boolean {
+    override fun areContentsTheSame(oldItem: LightModel, newItem: LightModel): Boolean {
         return oldItem.id == newItem.id
     }
 
